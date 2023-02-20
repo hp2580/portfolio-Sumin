@@ -1,0 +1,11 @@
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes moveUpDown {
+  to {
+    transform: translateY(-10px);
+  }
+}
