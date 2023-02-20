@@ -71,33 +71,10 @@ body::-webkit-scrollbar {
   background: rgba(0, 0, 0, 0.7);
 }
 
-section {
-  height: 100vh;
-  border-bottom: 1px solid #000;
-  padding: 20px 40px;
-  overflow: hidden;
-}
-section.sec1 {
-  display: flex;
-  align-items: flex-end;
+.emphasize {
   position: relative;
 }
-section.sec1 .introduction {
-  position: absolute;
-  top: 20px;
-  left: 40px;
-}
-section.sec1 .introduction h2 {
-  font-size: calc(1em + 3vw);
-}
-section.sec1 .introduction p {
-  font-size: calc(0.6em + 0.8vw);
-  color: rgba(0, 0, 0, 0.7);
-}
-section.sec1 .introduction p span {
-  position: relative;
-}
-section.sec1 .introduction p span:before {
+.emphasize:before {
   content: "";
   position: absolute;
   top: 50%;
@@ -109,7 +86,31 @@ section.sec1 .introduction p span:before {
   z-index: -1;
   transform: skewX(-15deg);
 }
-section.sec1 .decoWrap {
+
+section {
+  height: 100vh;
+  border-bottom: 1px solid #000;
+  padding: 20px 40px;
+  overflow: hidden;
+}
+section.home {
+  display: flex;
+  align-items: flex-end;
+  position: relative;
+}
+section.home .introduction {
+  position: absolute;
+  top: 20px;
+  left: 40px;
+}
+section.home .introduction h2 {
+  font-size: calc(1em + 3vw);
+}
+section.home .introduction p {
+  font-size: calc(0.6em + 0.8vw);
+  color: rgba(0, 0, 0, 0.7);
+}
+section.home .decoWrap {
   position: absolute;
   top: 50%;
   right: 0;
@@ -122,35 +123,35 @@ section.sec1 .decoWrap {
      -moz-user-select: none;
           user-select: none;
 }
-section.sec1 .decoWrap .deco:nth-child(1) {
+section.home .decoWrap .deco:nth-child(1) {
   text-shadow: 0 0 3px #000;
   transform: translateX(-100%);
   opacity: 1;
   animation: fadeOut 2s ease-in-out infinite alternate-reverse;
 }
-section.sec1 .decoWrap .deco:nth-child(2) {
+section.home .decoWrap .deco:nth-child(2) {
   color: transparent;
   -webkit-text-stroke: 1px #000;
 }
-section.sec1 .descWrap {
+section.home .descWrap {
   display: flex;
   align-items: center;
   width: 90%;
 }
-section.sec1 .descWrap img {
+section.home .descWrap img {
   width: 30%;
   mix-blend-mode: multiply;
 }
-section.sec1 .descWrap .desc {
+section.home .descWrap .desc {
   font-size: 1.65em;
 }
-section.sec1 .descWrap .desc em {
+section.home .descWrap .desc em {
   display: block;
   margin-left: 10px;
   padding-left: 20px;
   position: relative;
 }
-section.sec1 .descWrap .desc em:before {
+section.home .descWrap .desc em:before {
   content: "#";
   position: absolute;
   top: 0;
@@ -158,53 +159,53 @@ section.sec1 .descWrap .desc em:before {
   width: 20px;
   height: 20px;
 }
-section.sec1 .descWrap .desc h1 {
+section.home .descWrap .desc h1 {
   padding: 5px 0;
 }
-section.sec1 .contentWrap em {
+section.home .contentWrap em {
   display: block;
   letter-spacing: 2.5px;
   color: rgba(0, 0, 0, 0.8);
   font-weight: 600;
 }
-section.sec1 .contentWrap em br {
+section.home .contentWrap em br {
   display: none;
 }
-section.sec1 .contentWrap h1 {
+section.home .contentWrap h1 {
   margin-top: 10px;
   font-size: calc(0.8em + 10vw);
   position: relative;
 }
-section.sec1 .contentWrap h1 span {
+section.home .contentWrap h1 span {
   animation: moveUpDown 0.9s infinite alternate-reverse;
 }
-section.sec2 {
+section.about {
   display: flex;
   align-items: center;
   position: relative;
   gap: 0 30px;
 }
-section.sec2 .title {
+section.about .title {
   position: absolute;
   top: 20px;
   left: 40px;
   font-size: 2em;
 }
-section.sec2 .person {
+section.about .person {
   width: 30%;
   min-width: 200px;
   border-radius: 10px;
   overflow: hidden;
 }
-section.sec2 .person img {
+section.about .person img {
   display: block;
   width: 100%;
 }
-section.sec2 .desc h1 {
+section.about .desc h1 {
   font-size: 2.5em;
   padding: 5px 0;
 }
-section.sec2 .desc em {
+section.about .desc em {
   display: block;
   position: relative;
   margin-left: 10px;
@@ -212,7 +213,7 @@ section.sec2 .desc em {
   font-size: 1.5em;
   line-height: 1.8;
 }
-section.sec2 .desc em:before {
+section.about .desc em:before {
   content: "#";
   position: absolute;
   top: 0;
@@ -220,7 +221,7 @@ section.sec2 .desc em:before {
   width: 30px;
   height: 30px;
 }
-section.sec2 .desc em span {
+section.about .desc em span {
   display: none;
 }
 
@@ -228,46 +229,46 @@ section.sec2 .desc em span {
   section {
     padding: 20px;
   }
-  section.sec2 {
+  section.about {
     gap: 0 20px;
   }
-  section.sec2 .title {
+  section.about .title {
     left: 20px;
   }
-  section.sec2 .desc h1 {
+  section.about .desc h1 {
     display: none;
   }
-  section.sec2 .desc em {
+  section.about .desc em {
     margin-left: 0;
     margin-bottom: 10px;
     padding-left: 30px;
     font-size: 1.2em;
     line-height: 1.5;
   }
-  section.sec2 .desc em:before {
+  section.about .desc em:before {
     content: "";
     background: url(../images/icons-1151_512.gif) no-repeat center/cover;
     mix-blend-mode: multiply;
   }
-  section.sec2 .desc em span {
+  section.about .desc em span {
     display: inline-block;
   }
 }
 @media screen and (max-width: 480px) {
-  section.sec1 {
+  section.home {
     justify-content: center;
     align-items: center;
   }
-  section.sec1 .contentWrap em {
+  section.home .contentWrap em {
     text-align: center;
   }
-  section.sec1 .contentWrap em br {
+  section.home .contentWrap em br {
     display: inline-block;
   }
-  section.sec1 .contentWrap h1 {
+  section.home .contentWrap h1 {
     margin-top: 30px;
   }
-  section.sec1 .decoWrap {
+  section.home .decoWrap {
     writing-mode: unset;
     top: auto;
     right: auto;
@@ -275,34 +276,27 @@ section.sec2 .desc em span {
     left: 50%;
     transform: translateX(-50%);
   }
-  section.sec1 .decoWrap .deco:nth-child(1) {
+  section.home .decoWrap .deco:nth-child(1) {
     transform: translateY(100%);
   }
-  section.sec2 {
+  section.about {
     flex-direction: column;
     align-items: flex-start;
     padding-top: 80px;
     gap: 20px 0;
   }
-  section.sec2 .title {
+  section.about .title {
     left: 20px;
   }
-  section.sec2 .desc h1 {
+  section.about .desc h1 {
     display: none;
   }
-  section.sec2 .desc em {
-    margin-left: 0;
-    margin-bottom: 10px;
-    padding-left: 30px;
-    font-size: 1.2em;
-    line-height: 1.5;
+  section.about .desc em {
+    padding-left: 20px;
+    font-size: 1em;
   }
-  section.sec2 .desc em:before {
-    content: "";
-    background: url(../images/icons-1151_512.gif) no-repeat center/cover;
-    mix-blend-mode: multiply;
-  }
-  section.sec2 .desc em span {
-    display: inline-block;
+  section.about .desc em:before {
+    width: 20px;
+    height: 20px;
   }
 }/*# sourceMappingURL=style.css.map */

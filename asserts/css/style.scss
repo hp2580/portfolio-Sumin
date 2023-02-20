@@ -1,7 +1,7 @@
 @import "./reset";
 @import "./animations";
 
-$empasize: #b1b2ff;
+$emphasize: #b1b2ff;
 
 body {
   background: #cbf1f5;
@@ -27,12 +27,28 @@ body::-webkit-scrollbar {
   }
 }
 
+.emphasize {
+  position: relative;
+  &:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background: $emphasize;
+    filter: blur(1px);
+    z-index: -1;
+    transform: skewX(-15deg);
+  }
+}
+
 section {
   height: 100vh;
   border-bottom: 1px solid #000;
   padding: 20px 40px;
   overflow: hidden;
-  &.sec1 {
+  &.home {
     display: flex;
     align-items: flex-end;
     position: relative;
@@ -46,21 +62,6 @@ section {
       p {
         font-size: calc(0.6em + 0.8vw);
         color: rgba(#000, 0.7);
-        span {
-          position: relative;
-          &:before {
-            content: "";
-            position: absolute;
-            top: 50%;
-            left: 0;
-            width: 100%;
-            height: 50%;
-            background: $empasize;
-            filter: blur(1px);
-            z-index: -1;
-            transform: skewX(-15deg);
-          }
-        }
       }
     }
     .decoWrap {
@@ -135,7 +136,7 @@ section {
       }
     }
   }
-  &.sec2 {
+  &.about {
     display: flex;
     align-items: center;
     position: relative;
@@ -187,7 +188,7 @@ section {
 @media screen and (max-width: 768px) {
   section {
     padding: 20px;
-    &.sec2 {
+    &.about {
       gap: 0 20px;
       .title {
         left: 20px;
@@ -219,7 +220,7 @@ section {
 
 @media screen and (max-width: 480px) {
   section {
-    &.sec1 {
+    &.home {
       justify-content: center;
       align-items: center;
       .contentWrap {
@@ -247,7 +248,7 @@ section {
         }
       }
     }
-    &.sec2 {
+    &.about {
       flex-direction: column;
       align-items: flex-start;
       padding-top: 80px;
@@ -260,19 +261,11 @@ section {
           display: none;
         }
         em {
-          margin-left: 0;
-          margin-bottom: 10px;
-          padding-left: 30px;
-          font-size: 1.2em;
-          line-height: 1.5;
+          padding-left: 20px;
+          font-size: 1em;
           &:before {
-            content: "";
-            background: url(../images/icons-1151_512.gif) no-repeat center /
-              cover;
-            mix-blend-mode: multiply;
-          }
-          span {
-            display: inline-block;
+            width: 20px;
+            height: 20px;
           }
         }
       }
