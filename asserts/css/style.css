@@ -83,8 +83,8 @@ body::-webkit-scrollbar {
   width: 100%;
   height: 50%;
   background: #b1b2ff;
+  mix-blend-mode: multiply;
   filter: blur(1px);
-  z-index: -1;
   transform: skewX(-15deg);
 }
 
@@ -195,13 +195,15 @@ section.about .title {
 }
 section.about .person {
   display: flex;
-  gap: 0 30px;
+  width: 100%;
+  gap: 0 20px;
 }
-section.about .person img {
+section.about .person .photo {
   display: block;
   width: 30%;
-  min-width: 250px;
-  border-radius: 10px;
+  min-width: 200px;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 section.about .person .detailWrap {
   display: grid;
@@ -209,8 +211,8 @@ section.about .person .detailWrap {
   gap: 10px;
   width: 100%;
   padding: 10px;
-  border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  background: #fff;
 }
 section.about .person .detailWrap table.profile {
   grid-area: profile;
@@ -231,10 +233,16 @@ section.about .person .detailWrap table th {
   margin-bottom: 10px;
 }
 section.about .person .detailWrap table td {
-  font-size: 1.25em;
+  font-size: 1.2em;
 }
 section.about .person .detailWrap table td.bold {
   font-weight: 600;
+}
+section.about .person .detailWrap table td.icon {
+  display: none;
+}
+section.about .person .detailWrap table td.icon img {
+  width: 100%;
 }
 section.about .desc h1 {
   font-size: 2.5em;
@@ -270,11 +278,36 @@ section.about .desc em span:not(.emphasize) {
   section.home .introduction {
     left: 20px;
   }
-  section.about {
-    gap: 0 20px;
-  }
   section.about .title {
     left: 20px;
+  }
+  section.about .person {
+    flex-direction: column;
+    gap: 10px 0;
+  }
+  section.about .person .photo {
+    min-width: 250px;
+  }
+  section.about .person .detailWrap {
+    grid-template-areas: "profile" "skill" "feature" "contact";
+  }
+  section.about .person .detailWrap table.skills tr:not(:nth-child(1)) {
+    display: inline-block;
+    margin-right: 10px;
+  }
+  section.about .person .detailWrap table.skills tr td.icon {
+    display: block;
+    width: 40px;
+    height: 40px;
+  }
+  section.about .person .detailWrap table.skills tr td:not(.icon) {
+    display: none;
+  }
+  section.about .person .detailWrap table td {
+    font-size: 1.1em;
+  }
+  section.about .person .detailWrap table td.bold {
+    width: 80px;
   }
   section.about .desc h1 {
     display: none;
@@ -320,21 +353,30 @@ section.about .desc em span:not(.emphasize) {
   section.home .decoWrap .deco:nth-child(1) {
     transform: translateY(100%);
   }
-  section.about {
+  section.about .person {
     flex-direction: column;
-    align-items: flex-start;
-    padding-top: 80px;
-    gap: 20px 0;
+    gap: 10px 0;
   }
-  section.about .title {
-    left: 20px;
+  section.about .person .photo {
+    width: 50%;
+    min-width: 200px;
+  }
+  section.about .person .detailWrap table.skills tr:not(:nth-child(1)) {
+    margin-right: 5px;
+  }
+  section.about .person .detailWrap table.skills tr td.icon {
+    width: 30px;
+    height: 30px;
+  }
+  section.about .person .detailWrap table td {
+    font-size: 0.85em;
   }
   section.about .desc h1 {
     display: none;
   }
   section.about .desc em {
     padding-left: 20px;
-    font-size: 1em;
+    font-size: 0.85em;
   }
   section.about .desc em:before {
     width: 20px;
