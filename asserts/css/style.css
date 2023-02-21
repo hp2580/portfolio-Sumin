@@ -64,6 +64,7 @@ body::-webkit-scrollbar {
   height: 6px;
   background: rgba(0, 0, 0, 0.4);
   overflow: hidden;
+  z-index: 20;
 }
 .scrollbar .bar {
   width: 0;
@@ -88,7 +89,7 @@ body::-webkit-scrollbar {
 }
 
 section {
-  height: 100vh;
+  min-height: 100vh;
   border-bottom: 1px solid #000;
   padding: 20px 40px;
   overflow: hidden;
@@ -181,9 +182,10 @@ section.home .contentWrap h1 span {
 }
 section.about {
   display: flex;
-  align-items: center;
+  flex-direction: column;
   position: relative;
-  gap: 0 30px;
+  gap: 20px 0;
+  padding-top: 80px;
 }
 section.about .title {
   position: absolute;
@@ -192,14 +194,47 @@ section.about .title {
   font-size: 2em;
 }
 section.about .person {
-  width: 30%;
-  min-width: 200px;
-  border-radius: 10px;
-  overflow: hidden;
+  display: flex;
+  gap: 0 30px;
 }
 section.about .person img {
   display: block;
+  width: 30%;
+  min-width: 250px;
+  border-radius: 10px;
+}
+section.about .person .detailWrap {
+  display: grid;
+  grid-template-areas: "profile feature" "skill contact";
+  gap: 10px;
   width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+section.about .person .detailWrap table.profile {
+  grid-area: profile;
+}
+section.about .person .detailWrap table.skills {
+  grid-area: skill;
+}
+section.about .person .detailWrap table.feature {
+  grid-area: feature;
+}
+section.about .person .detailWrap table.contact {
+  grid-area: contact;
+}
+section.about .person .detailWrap table th {
+  display: inline-block;
+  text-align: left;
+  font-size: 1.4em;
+  margin-bottom: 10px;
+}
+section.about .person .detailWrap table td {
+  font-size: 1.25em;
+}
+section.about .person .detailWrap table td.bold {
+  font-weight: 600;
 }
 section.about .desc h1 {
   font-size: 2.5em;
@@ -221,13 +256,19 @@ section.about .desc em:before {
   width: 30px;
   height: 30px;
 }
-section.about .desc em span {
+section.about .desc em span.emphasize {
+  white-space: nowrap;
+}
+section.about .desc em span:not(.emphasize) {
   display: none;
 }
 
 @media screen and (max-width: 768px) {
   section {
     padding: 20px;
+  }
+  section.home .introduction {
+    left: 20px;
   }
   section.about {
     gap: 0 20px;
@@ -250,7 +291,7 @@ section.about .desc em span {
     background: url(../images/icons-1151_512.gif) no-repeat center/cover;
     mix-blend-mode: multiply;
   }
-  section.about .desc em span {
+  section.about .desc em span:not(.emphasize) {
     display: inline-block;
   }
 }

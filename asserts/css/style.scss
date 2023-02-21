@@ -20,6 +20,7 @@ body::-webkit-scrollbar {
   height: 6px;
   background: rgba(#000, 0.4);
   overflow: hidden;
+  z-index: 20;
   .bar {
     width: 0;
     height: 100%;
@@ -44,7 +45,7 @@ body::-webkit-scrollbar {
 }
 
 section {
-  height: 100vh;
+  min-height: 100vh;
   border-bottom: 1px solid #000;
   padding: 20px 40px;
   overflow: hidden;
@@ -138,9 +139,10 @@ section {
   }
   &.about {
     display: flex;
-    align-items: center;
+    flex-direction: column;
     position: relative;
-    gap: 0 30px;
+    gap: 20px 0;
+    padding-top: 80px;
     .title {
       position: absolute;
       top: 20px;
@@ -148,13 +150,50 @@ section {
       font-size: 2em;
     }
     .person {
-      width: 30%;
-      min-width: 200px;
-      border-radius: 10px;
-      overflow: hidden;
+      display: flex;
+      gap: 0 30px;
       img {
         display: block;
+        width: 30%;
+        min-width: 250px;
+        border-radius: 10px;
+      }
+      .detailWrap {
+        display: grid;
+        grid-template-areas:
+          "profile feature"
+          "skill contact";
+        gap: 10px;
         width: 100%;
+        padding: 10px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(#000, 0.3);
+        table {
+          &.profile {
+            grid-area: profile;
+          }
+          &.skills {
+            grid-area: skill;
+          }
+          &.feature {
+            grid-area: feature;
+          }
+          &.contact {
+            grid-area: contact;
+          }
+          th {
+            display: inline-block;
+            text-align: left;
+            font-size: 1.4em;
+            margin-bottom: 10px;
+          }
+          td {
+            font-size: 1.25em;
+            &.bold {
+              font-weight: 600;
+            }
+          }
+        }
       }
     }
     .desc {
@@ -178,7 +217,12 @@ section {
           height: 30px;
         }
         span {
-          display: none;
+          &.emphasize {
+            white-space: nowrap;
+          }
+          &:not(.emphasize) {
+            display: none;
+          }
         }
       }
     }
@@ -188,6 +232,11 @@ section {
 @media screen and (max-width: 768px) {
   section {
     padding: 20px;
+    &.home {
+      .introduction {
+        left: 20px;
+      }
+    }
     &.about {
       gap: 0 20px;
       .title {
@@ -209,7 +258,7 @@ section {
               cover;
             mix-blend-mode: multiply;
           }
-          span {
+          span:not(.emphasize) {
             display: inline-block;
           }
         }
