@@ -52,6 +52,9 @@ body {
   background: #cbf1f5;
   word-break: keep-all;
 }
+body.hidden {
+  overflow: hidden;
+}
 
 body::-webkit-scrollbar {
   display: none;
@@ -295,12 +298,11 @@ section.projects .modalProject.active {
   display: block;
 }
 section.projects .modalProject .modalWrap {
-  position: relative;
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
 }
-section.projects .modalProject .modal {
+section.projects .modalProject .modalWrap .modal {
   display: flex;
   flex-direction: column;
   gap: 10px 0;
@@ -313,13 +315,22 @@ section.projects .modalProject .modal {
   padding: 20px;
   transform: translate(-50%, -50%);
 }
-section.projects .modalProject .modal h2 {
+section.projects .modalProject .modalWrap .modal h2 {
   font-size: calc(1em + 2vw);
 }
-section.projects .modalProject .modal span {
+section.projects .modalProject .modalWrap .modal span {
   font-size: calc(0.6em + 1vw);
 }
-section.projects .modalProject .modal .link {
+section.projects .modalProject .modalWrap .modal .modalClose {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50px;
+  height: 50px;
+  font-size: 2em;
+  background: transparent;
+}
+section.projects .modalProject .modalWrap .modal .link {
   display: inline-flex;
   gap: 0 10px;
   width: -moz-fit-content;
@@ -329,34 +340,34 @@ section.projects .modalProject .modal .link {
   color: #fff;
   background: #000;
 }
-section.projects .modalProject .modal .link .arrow {
+section.projects .modalProject .modalWrap .modal .link .arrow {
   color: transparent;
   position: relative;
   overflow: hidden;
 }
-section.projects .modalProject .modal .link .arrow:before, section.projects .modalProject .modal .link .arrow:after {
+section.projects .modalProject .modalWrap .modal .link .arrow:before, section.projects .modalProject .modalWrap .modal .link .arrow:after {
   content: "→";
   position: absolute;
   top: 0;
   left: 0;
   color: #fff;
 }
-section.projects .modalProject .modal .link .arrow:after {
+section.projects .modalProject .modalWrap .modal .link .arrow:after {
   transform: translateX(-100%);
 }
-section.projects .modalProject .modal .link:hover .arrow:before {
+section.projects .modalProject .modalWrap .modal .link:hover .arrow:before {
   transform: translateX(100%);
   transition: 0.3s ease;
 }
-section.projects .modalProject .modal .link:hover .arrow:after {
+section.projects .modalProject .modalWrap .modal .link:hover .arrow:after {
   transform: translateX(0);
   transition: 0.3s ease;
 }
-section.projects .modalProject .modal .imgWrap {
+section.projects .modalProject .modalWrap .modal .imgWrap {
   height: 100%;
   overflow: hidden;
 }
-section.projects .modalProject .modal .imgWrap img {
+section.projects .modalProject .modalWrap .modal .imgWrap img {
   display: block;
   width: 100%;
 }
@@ -471,6 +482,9 @@ section.projects .stickyWrap .projectWrap .project.project1 h2:before {
 section.projects .stickyWrap .projectWrap .project.project1 span {
   font-size: 1.3em;
 }
+section.projects .stickyWrap .projectWrap .project.end {
+  min-width: 100%;
+}
 
 @media screen and (max-width: 768px) {
   section {
@@ -530,6 +544,116 @@ section.projects .stickyWrap .projectWrap .project.project1 span {
   }
   section.about .desc em span:not(.emphasize) {
     display: inline-block;
+  }
+  section.projects {
+    /*여기부터*/
+  }
+  section.projects .modalProject .modal {
+    width: 90%;
+    height: 70%;
+  }
+  section.projects .stickyWrap {
+    position: sticky;
+    top: 0;
+    left: 0;
+    max-height: 100vh;
+    overflow: hidden;
+  }
+  section.projects .stickyWrap .projectWrap .project {
+    min-width: 100%;
+    padding: 0 30px;
+    overflow: hidden;
+  }
+  section.projects .stickyWrap .projectWrap .project .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    height: 70vh;
+    padding: 20px;
+    border-radius: 15px;
+    background: #fff;
+    opacity: 0;
+    transition: 0.6s ease;
+  }
+  section.projects .stickyWrap .projectWrap .project .container > * {
+    opacity: 0;
+  }
+  section.projects .stickyWrap .projectWrap .project .container .imgWrap {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 30vh;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+  }
+  section.projects .stickyWrap .projectWrap .project .container .imgWrap img {
+    display: block;
+    width: 100%;
+    transform: scale(0.5);
+    filter: drop-shadow(0 0 3px #000);
+  }
+  section.projects .stickyWrap .projectWrap .project .container .imgWrap img.invert {
+    filter: invert(1);
+  }
+  section.projects .stickyWrap .projectWrap .project .container .descWrap h2 {
+    margin-bottom: 10px;
+  }
+  section.projects .stickyWrap .projectWrap .project .container .btnMore {
+    color: #fff;
+    font-weight: 600;
+    margin-top: 10px;
+    padding: 10px 0;
+    background: #b1b2ff;
+    border-radius: 10px;
+  }
+  section.projects .stickyWrap .projectWrap .project.top .container {
+    transform: translateY(100%);
+  }
+  section.projects .stickyWrap .projectWrap .project.bottom .container {
+    transform: translateY(-100%);
+  }
+  section.projects .stickyWrap .projectWrap .project.active .container {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  section.projects .stickyWrap .projectWrap .project.active .container > * {
+    opacity: 1;
+    transition: 0.4s 0.4s ease;
+  }
+  section.projects .stickyWrap .projectWrap .project.project1 {
+    flex-direction: column;
+    min-width: 100%;
+  }
+  section.projects .stickyWrap .projectWrap .project.project1 > * {
+    opacity: 0;
+    transform: translateX(100px);
+    transition: 0.5s ease;
+  }
+  section.projects .stickyWrap .projectWrap .project.project1.active > * {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  section.projects .stickyWrap .projectWrap .project.project1 h2 {
+    font-size: calc(2em + 3vw);
+    padding-bottom: 60px;
+    position: relative;
+  }
+  section.projects .stickyWrap .projectWrap .project.project1 h2:before {
+    content: "";
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    width: 30px;
+    height: 15px;
+    -webkit-clip-path: polygon(0 0, 100% 0, 50% 100%);
+            clip-path: polygon(0 0, 100% 0, 50% 100%);
+    background: #000;
+    transform: translateX(-50%);
+  }
+  section.projects .stickyWrap .projectWrap .project.project1 span {
+    font-size: 1.3em;
   }
 }
 @media screen and (max-width: 480px) {

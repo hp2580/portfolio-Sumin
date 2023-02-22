@@ -6,6 +6,9 @@ $emphasize: #b1b2ff;
 body {
   background: #cbf1f5;
   word-break: keep-all;
+  &.hidden {
+    overflow: hidden;
+  }
 }
 
 body::-webkit-scrollbar {
@@ -254,72 +257,80 @@ section {
         display: block;
       }
       .modalWrap {
-        position: relative;
         width: 100%;
         height: 100%;
         background: rgba(#000, 0.5);
-      }
-      .modal {
-        display: flex;
-        flex-direction: column;
-        gap: 10px 0;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 80%;
-        height: 90%;
-        background: #fff;
-        padding: 20px;
-        transform: translate(-50%, -50%);
-        h2 {
-          font-size: calc(1em + 2vw);
-        }
-        span {
-          font-size: calc(0.6em + 1vw);
-        }
-        .link {
-          display: inline-flex;
-          gap: 0 10px;
-          width: fit-content;
-          padding: 10px;
-          border-radius: 5px;
-          color: #fff;
-          background: #000;
-          .arrow {
-            color: transparent;
-            position: relative;
-            overflow: hidden;
-            &:before,
-            &:after {
-              content: "→";
-              position: absolute;
-              top: 0;
-              left: 0;
-              color: #fff;
-            }
-            &:after {
-              transform: translateX(-100%);
-            }
+        .modal {
+          display: flex;
+          flex-direction: column;
+          gap: 10px 0;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 80%;
+          height: 90%;
+          background: #fff;
+          padding: 20px;
+          transform: translate(-50%, -50%);
+          h2 {
+            font-size: calc(1em + 2vw);
           }
-          &:hover {
+          span {
+            font-size: calc(0.6em + 1vw);
+          }
+          .modalClose {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50px;
+            height: 50px;
+            font-size: 2em;
+            background: transparent;
+          }
+          .link {
+            display: inline-flex;
+            gap: 0 10px;
+            width: fit-content;
+            padding: 10px;
+            border-radius: 5px;
+            color: #fff;
+            background: #000;
             .arrow {
-              &:before {
-                transform: translateX(100%);
-                transition: 0.3s ease;
+              color: transparent;
+              position: relative;
+              overflow: hidden;
+              &:before,
+              &:after {
+                content: "→";
+                position: absolute;
+                top: 0;
+                left: 0;
+                color: #fff;
               }
               &:after {
-                transform: translateX(0);
-                transition: 0.3s ease;
+                transform: translateX(-100%);
+              }
+            }
+            &:hover {
+              .arrow {
+                &:before {
+                  transform: translateX(100%);
+                  transition: 0.3s ease;
+                }
+                &:after {
+                  transform: translateX(0);
+                  transition: 0.3s ease;
+                }
               }
             }
           }
-        }
-        .imgWrap {
-          height: 100%;
-          overflow: hidden;
-          img {
-            display: block;
-            width: 100%;
+          .imgWrap {
+            height: 100%;
+            overflow: hidden;
+            img {
+              display: block;
+              width: 100%;
+            }
           }
         }
       }
@@ -439,6 +450,9 @@ section {
               font-size: 1.3em;
             }
           }
+          &.end {
+            min-width: 100%;
+          }
         }
       }
     }
@@ -516,6 +530,127 @@ section {
           }
           span:not(.emphasize) {
             display: inline-block;
+          }
+        }
+      }
+    }
+    &.projects {
+      /*여기부터*/
+      .modalProject {
+        .modal {
+          width: 90%;
+          height: 70%;
+        }
+      }
+      .stickyWrap {
+        position: sticky;
+        top: 0;
+        left: 0;
+        max-height: 100vh;
+        overflow: hidden;
+        .projectWrap {
+          .project {
+            min-width: 100%;
+            padding: 0 30px;
+            overflow: hidden;
+            .container {
+              display: flex;
+              flex-direction: column;
+              justify-content: space-between;
+              width: 100%;
+              height: 70vh;
+              padding: 20px;
+              border-radius: 15px;
+              background: #fff;
+              opacity: 0;
+              transition: 0.6s ease;
+              & > * {
+                opacity: 0;
+              }
+              .imgWrap {
+                display: flex;
+                align-items: center;
+                width: 100%;
+                height: 30vh;
+                overflow: hidden;
+                border-radius: 10px;
+                box-shadow: 0 0 3px rgba(#000, 0.2);
+                img {
+                  display: block;
+                  width: 100%;
+                  transform: scale(0.5);
+                  filter: drop-shadow(0 0 3px #000);
+                  &.invert {
+                    filter: invert(1);
+                  }
+                }
+              }
+              .descWrap {
+                h2 {
+                  margin-bottom: 10px;
+                }
+              }
+              .btnMore {
+                color: #fff;
+                font-weight: 600;
+                margin-top: 10px;
+                padding: 10px 0;
+                background: $emphasize;
+                border-radius: 10px;
+              }
+            }
+            &.top {
+              .container {
+                transform: translateY(100%);
+              }
+            }
+            &.bottom {
+              .container {
+                transform: translateY(-100%);
+              }
+            }
+            &.active {
+              .container {
+                opacity: 1;
+                transform: translateY(0);
+                & > * {
+                  opacity: 1;
+                  transition: 0.4s 0.4s ease;
+                }
+              }
+            }
+            &.project1 {
+              flex-direction: column;
+              min-width: 100%;
+              & > * {
+                opacity: 0;
+                transform: translateX(100px);
+                transition: 0.5s ease;
+              }
+              &.active > * {
+                opacity: 1;
+                transform: translateX(0);
+              }
+              h2 {
+                font-size: calc(2em + 3vw);
+                padding-bottom: 60px;
+                position: relative;
+                &:before {
+                  content: "";
+                  position: absolute;
+                  bottom: 30px;
+                  left: 50%;
+                  width: 30px;
+                  height: 15px;
+                  clip-path: polygon(0 0, 100% 0, 50% 100%);
+                  background: #000;
+                  transform: translateX(-50%);
+                }
+              }
+              span {
+                font-size: 1.3em;
+              }
+            }
           }
         }
       }

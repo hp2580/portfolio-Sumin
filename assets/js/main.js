@@ -5,7 +5,8 @@ const scrollBar = document.querySelector(".scrollbar .bar"),
   projects = document.querySelectorAll(".project:not(:first-child)"),
   btnProjects = document.querySelectorAll(".btnMore"),
   modalWrap = document.querySelector(".modalProject"),
-  modal = document.querySelector(".modal");
+  modal = document.querySelector(".modal"),
+  closeModal = document.querySelector(".modalClose");
 
 const arrProject = [
   { name: "samsung", alt: "삼성재단", href: "Samsung" },
@@ -36,12 +37,14 @@ const hScroll = () => {
   let scrollPos = (scrollWidth / scrollHeight) * -top * 0.8;
   if (stickyTop < 1) {
     document.querySelector(".project1").classList.add("active");
-    // projects.forEach((project) => {
-    //   let left = project.offsetLeft;
-    //   if (scrollPos > left - 100 && scrollPos < left + 100) {
-    //     scrollPos = left;
-    //   }
-    // });
+    if (window.innerWidth <= 768) {
+      projects.forEach((project) => {
+        let left = project.offsetLeft;
+        if (scrollPos > left - 100 && scrollPos < left + 100) {
+          scrollPos = left;
+        }
+      });
+    }
     sticky.scrollLeft = scrollPos;
   } else {
     document.querySelector(".project1").classList.remove("active");
@@ -80,15 +83,20 @@ window.onscroll = () => {
   toggleFadeProject();
 };
 
+window.onresize = () => {
+  hScroll();
+};
+
 btnProjects.forEach((btn) => {
   btn.addEventListener("click", () => {
     let idx = btn.getAttribute("data-idx");
     let desc = btn.previousElementSibling;
-    let img = document.createElement("img");
+    let img = document.querySelector(".modal img");
     let url = `assets/images/project_${arrProject[idx].name}.png`;
     let alt = arrProject[idx].alt;
     let href = `https://hp2580.github.io/Clone_${arrProject[idx].href}`;
 
+    document.body.classList.add("hidden");
     modalWrap.classList.add("active");
     modal.prepend(desc.cloneNode(true));
 
@@ -101,3 +109,8 @@ btnProjects.forEach((btn) => {
     };
   });
 });
+
+closeModal.onclick = () => {
+  document.body.classList.remove("hidden");
+  modalWrap.classList.remove("active");
+};
