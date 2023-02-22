@@ -2,7 +2,19 @@ const scrollBar = document.querySelector(".scrollbar .bar"),
   portFolio = document.querySelector(".contentWrap h1"),
   project = document.querySelector(".projects"),
   sticky = document.querySelector(".stickyWrap"),
-  projects = document.querySelectorAll(".project:not(:first-child)");
+  projects = document.querySelectorAll(".project:not(:first-child)"),
+  btnProjects = document.querySelectorAll(".btnMore"),
+  modalWrap = document.querySelector(".modalProject"),
+  modal = document.querySelector(".modal");
+
+const arrProject = [
+  { name: "samsung", alt: "삼성재단", href: "Samsung" },
+  { name: "daelim", alt: "대림바스", href: "Daelim" },
+  { name: "hyundai", alt: "현대 IT&E", href: "Hyundai" },
+  { name: "hPoint", alt: "H.Point", href: "H-Point" },
+  { name: "selecto", alt: "셀렉토 커피", href: "Selecto" },
+  { name: "sandbox", alt: "샌드박스", href: "Sandbox" },
+];
 
 const animateText = () => {
   let splitText = portFolio.innerText.split("");
@@ -53,8 +65,10 @@ const toggleFadeProject = () => {
 };
 
 window.addEventListener("DOMContentLoaded", () => {
-  animateText();
-  toggleFadeProject();
+  setTimeout(() => {
+    animateText();
+    toggleFadeProject();
+  });
 });
 
 window.onscroll = () => {
@@ -65,3 +79,25 @@ window.onscroll = () => {
   hScroll();
   toggleFadeProject();
 };
+
+btnProjects.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    let idx = btn.getAttribute("data-idx");
+    let desc = btn.previousElementSibling;
+    let img = document.createElement("img");
+    let url = `assets/images/project_${arrProject[idx].name}.png`;
+    let alt = arrProject[idx].alt;
+    let href = `https://hp2580.github.io/Clone_${arrProject[idx].href}`;
+
+    modalWrap.classList.add("active");
+    modal.prepend(desc.cloneNode(true));
+
+    document.querySelector(".modal .link").setAttribute("href", href);
+
+    img.setAttribute("src", url);
+    img.setAttribute("alt", alt);
+    img.onload = () => {
+      document.querySelector(".modal .imgWrap").append(img);
+    };
+  });
+});
