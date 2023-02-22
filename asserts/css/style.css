@@ -52,10 +52,6 @@ body {
   word-break: keep-all;
 }
 
-body::-webkit-scrollbar {
-  display: none;
-}
-
 .scrollbar {
   position: fixed;
   left: 0;
@@ -184,7 +180,7 @@ section.about {
   display: flex;
   flex-direction: column;
   position: relative;
-  gap: 20px 0;
+  gap: 40px 0;
   padding-top: 80px;
 }
 section.about .title {
@@ -244,6 +240,12 @@ section.about .person .detailWrap table td.icon {
 section.about .person .detailWrap table td.icon img {
   width: 100%;
 }
+section.about .desc {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0 20px;
+}
 section.about .desc h1 {
   font-size: 2.5em;
   padding: 5px 0;
@@ -269,6 +271,29 @@ section.about .desc em span.emphasize {
 }
 section.about .desc em span:not(.emphasize) {
   display: none;
+}
+section.projects {
+  height: 600vh;
+  padding: 0;
+  overflow: visible;
+}
+section.projects .stickyWrap {
+  position: sticky;
+  top: 0;
+  left: 0;
+  max-height: 100vh;
+  overflow: hidden;
+}
+section.projects .stickyWrap .projectWrap {
+  display: flex;
+}
+section.projects .stickyWrap .projectWrap .project {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 10em;
+  min-width: 100%;
+  height: 100vh;
 }
 
 @media screen and (max-width: 768px) {
@@ -308,6 +333,9 @@ section.about .desc em span:not(.emphasize) {
   }
   section.about .person .detailWrap table td.bold {
     width: 80px;
+  }
+  section.about .desc {
+    justify-content: flex-start;
   }
   section.about .desc h1 {
     display: none;
