@@ -98,6 +98,7 @@ btnProjects.forEach((btn) => {
 
     document.body.classList.add("hidden");
     modalWrap.classList.add("active");
+
     modal.prepend(desc.cloneNode(true));
 
     document.querySelector(".modal .link").setAttribute("href", href);
@@ -111,6 +112,12 @@ btnProjects.forEach((btn) => {
 });
 
 closeModal.onclick = () => {
+  let firstChild = Array.from(modal.children)[0].className;
+
   document.body.classList.remove("hidden");
   modalWrap.classList.remove("active");
+
+  if (firstChild === "descWrap") {
+    modal.removeChild(modal.firstElementChild);
+  }
 };
