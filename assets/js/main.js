@@ -37,14 +37,14 @@ const hScroll = () => {
   let scrollPos = (scrollWidth / scrollHeight) * -top * 0.8;
   if (stickyTop < 1) {
     document.querySelector(".project1").classList.add("active");
-    if (window.innerWidth <= 768) {
-      projects.forEach((project) => {
-        let left = project.offsetLeft;
-        if (scrollPos > left - 100 && scrollPos < left + 100) {
-          scrollPos = left;
-        }
-      });
-    }
+    // if (window.innerWidth <= 768) {
+    //   projects.forEach((project) => {
+    //     let left = project.offsetLeft;
+    //     if (scrollPos > left - 100 && scrollPos < left + 100) {
+    //       scrollPos = left;
+    //     }
+    //   });
+    // }
     sticky.scrollLeft = scrollPos;
   } else {
     document.querySelector(".project1").classList.remove("active");
