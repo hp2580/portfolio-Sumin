@@ -54,6 +54,54 @@ body::-webkit-scrollbar {
   font-size: 2em;
 }
 
+.modalClose {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50px;
+  height: 50px;
+  font-size: 2em;
+  background: transparent;
+}
+
+.link {
+  display: inline-flex;
+  gap: 0 10px;
+  width: fit-content;
+  padding: 10px;
+  border-radius: 5px;
+  color: #fff;
+  background: #000;
+  .arrow {
+    color: transparent;
+    position: relative;
+    overflow: hidden;
+    &:before,
+    &:after {
+      content: "→";
+      position: absolute;
+      top: 0;
+      left: 0;
+      color: #fff;
+    }
+    &:after {
+      transform: translateX(-100%);
+    }
+  }
+  &:hover {
+    .arrow {
+      &:before {
+        transform: translateX(100%);
+        transition: 0.3s ease;
+      }
+      &:after {
+        transform: translateX(0);
+        transition: 0.3s ease;
+      }
+    }
+  }
+}
+
 section {
   min-height: 100vh;
   border-bottom: 1px solid #000;
@@ -280,55 +328,18 @@ section {
           span {
             font-size: calc(0.6em + 1vw);
           }
-          .modalClose {
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 50px;
-            height: 50px;
-            font-size: 2em;
-            background: transparent;
-          }
-          .link {
-            display: inline-flex;
-            gap: 0 10px;
-            width: fit-content;
-            padding: 10px;
-            border-radius: 5px;
-            color: #fff;
-            background: #000;
-            .arrow {
-              color: transparent;
-              position: relative;
-              overflow: hidden;
-              &:before,
-              &:after {
-                content: "→";
-                position: absolute;
-                top: 0;
-                left: 0;
-                color: #fff;
-              }
-              &:after {
-                transform: translateX(-100%);
-              }
-            }
-            &:hover {
-              .arrow {
-                &:before {
-                  transform: translateX(100%);
-                  transition: 0.3s ease;
-                }
-                &:after {
-                  transform: translateX(0);
-                  transition: 0.3s ease;
-                }
-              }
-            }
-          }
           .imgWrap {
             height: 100%;
-            overflow: hidden;
+            overflow-y: scroll;
+            &::-webkit-scrollbar {
+              width: 4px;
+              background: rgba(#000, 0.3);
+              border-radius: 4px;
+            }
+            &::-webkit-scrollbar-thumb {
+              border-radius: 4px;
+              background: #000;
+            }
             img {
               display: block;
               width: 100%;
@@ -463,48 +474,130 @@ section {
   &.react {
     min-height: auto;
     padding-top: 80px;
+    .modalReact {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 10;
+      &.active {
+        display: block;
+        &.t {
+          .content.todo {
+            display: block;
+          }
+        }
+        &.m {
+          .content.movie {
+            display: block;
+          }
+        }
+      }
+      .modalWrap {
+        width: 100%;
+        height: 100%;
+        background: rgba(#000, 0.5);
+        .modal {
+          display: flex;
+          flex-direction: column;
+          gap: 10px 0;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 80%;
+          height: auto;
+          max-height: 80%;
+          padding: 10px;
+          background: #fff;
+          transform: translate(-50%, -50%);
+          .btnPrev,
+          .btnNext {
+            position: absolute;
+            top: 50%;
+            width: calc(25px + 2vw);
+            aspect-ratio: 1;
+            filter: invert(1);
+            transform: rotate(-90deg);
+            background: url(../images/ico_arrow.png) no-repeat center / cover;
+            z-index: 11;
+            &.disable {
+              opacity: 0.5;
+              pointer-events: none;
+            }
+          }
+          .btnNext {
+            right: 10px;
+            transform: rotate(90deg);
+          }
+          .content {
+            display: none;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            .slider {
+              display: flex;
+              width: 100%;
+              height: 100%;
+              transition: 0.3s ease;
+              li {
+                min-width: 100%;
+                padding: 20px;
+                img {
+                  width: 100%;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
     .slideWrap {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 0 10px;
       .slide {
         flex: 1;
-        padding: 10px;
         background: #fff;
         box-shadow: 2px 2px 5px #000;
-        .imgWrap {
-          display: flex;
-          width: 100%;
-          margin-bottom: 10px;
-          overflow: hidden;
-          img {
-            display: block;
-            flex: 1;
+        a {
+          display: block;
+          padding: 10px;
+          .imgWrap {
+            display: flex;
             width: 100%;
-          }
-        }
-        .descWrap {
-          span {
-            font-size: calc(0.4em + 0.8vw);
-            color: rgba(#000, 0.7);
-            margin-right: 5px;
-          }
-          h2 {
-            font-size: calc(1em + 1vw);
             margin-bottom: 10px;
-            position: relative;
-            &:before {
-              content: "";
-              position: absolute;
-              bottom: 0;
-              left: 0;
+            overflow: hidden;
+            img {
+              display: block;
+              flex: 1;
               width: 100%;
-              height: 1px;
-              background: #000;
             }
           }
-          p {
-            font-size: calc(0.5em + 1vw);
+          .descWrap {
+            span {
+              font-size: calc(0.4em + 0.8vw);
+              color: rgba(#000, 0.7);
+              margin-right: 5px;
+            }
+            h2 {
+              font-size: calc(1em + 1vw);
+              margin-bottom: 10px;
+              position: relative;
+              &:before {
+                content: "";
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: 1px;
+                background: #000;
+              }
+            }
+            p {
+              font-size: calc(0.5em + 1vw);
+            }
           }
         }
       }

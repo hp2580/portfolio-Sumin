@@ -4,9 +4,15 @@ const scrollBar = document.querySelector(".scrollbar .bar"),
   sticky = document.querySelector(".stickyWrap"),
   projects = document.querySelectorAll(".project:not(:first-child)"),
   btnProjects = document.querySelectorAll(".btnMore"),
-  modalWrap = document.querySelector(".modalProject"),
-  modal = document.querySelector(".modal"),
-  closeModal = document.querySelector(".modalClose");
+  modalWrap_p = document.querySelector(".modalProject"),
+  modal_p = document.querySelector(".modalProject .modal"),
+  closeModal_p = document.querySelector(".modalProject .modalClose"),
+  slides = document.querySelectorAll(".slide a"),
+  modalWrap_r = document.querySelector(".modalReact"),
+  modal_r = document.querySelector(".modalReact .modal"),
+  closeModal_r = document.querySelector(".modalReact .modalClose"),
+  controlModal = document.querySelectorAll(".modalReact .btn"),
+  modalSlider = document.querySelectorAll(".modalReact .slider");
 
 const arrProject = [
   { name: "samsung", alt: "삼성재단", href: "Samsung" },
@@ -16,6 +22,8 @@ const arrProject = [
   { name: "selecto", alt: "셀렉토 커피", href: "Selecto" },
   { name: "sandbox", alt: "샌드박스", href: "Sandbox" },
 ];
+
+let pos = 0;
 
 const animateText = () => {
   let splitText = portFolio.innerText.split("");
@@ -67,6 +75,12 @@ const toggleFadeProject = () => {
   });
 };
 
+const moveSlider = (pos) => {
+  modalSlider.forEach((slider) => {
+    slider.style.transform = `translateX(${pos}%)`;
+  });
+};
+
 window.addEventListener("DOMContentLoaded", () => {
   setTimeout(() => {
     animateText();
@@ -97,11 +111,13 @@ btnProjects.forEach((btn) => {
     let href = `https://hp2580.github.io/Clone_${arrProject[idx].href}`;
 
     document.body.classList.add("hidden");
-    modalWrap.classList.add("active");
+    modalWrap_p.classList.add("active");
 
-    modal.prepend(desc.cloneNode(true));
+    modal_p.prepend(desc.cloneNode(true));
 
-    document.querySelector(".modal .link").setAttribute("href", href);
+    document
+      .querySelector(".modalProject .modal .link")
+      .setAttribute("href", href);
 
     img.setAttribute("src", url);
     img.setAttribute("alt", alt);
@@ -111,13 +127,52 @@ btnProjects.forEach((btn) => {
   });
 });
 
-closeModal.onclick = () => {
-  let firstChild = Array.from(modal.children)[0].className;
+closeModal_p.onclick = () => {
+  let firstChild = Array.from(modal_p.children)[0].className;
 
   document.body.classList.remove("hidden");
-  modalWrap.classList.remove("active");
+  modalWrap_p.classList.remove("active");
 
   if (firstChild === "descWrap") {
-    modal.removeChild(modal.firstElementChild);
+    modal_p.removeChild(modal_p.firstElementChild);
   }
+};
+
+slides.forEach((slide) => {
+  slide.addEventListener("click", (e) => {
+    e.preventDefault();
+    if (slide.className === "slide_todo") {
+      modalWrap_r.classList.add("active", "t");
+    } else {
+      modalWrap_r.classList.add("active", "m");
+    }
+  });
+});
+
+controlModal.forEach((control) => {
+  control.onclick = () => {
+    if (control.classList.contains("btnPrev")) {
+      pos += 100;
+      if (pos > -1) {
+        document.querySelector(".btnPrev").classList.add("disable");
+      }
+      if (pos > -200) {
+        document.querySelector(".btnNext").classList.remove("disable");
+      }
+    } else {
+      pos -= 100;
+      if (pos < 0) {
+        document.querySelector(".btnPrev").classList.remove("disable");
+      }
+      if (pos < -100) {
+        document.querySelector(".btnNext").classList.add("disable");
+      }
+    }
+    moveSlider(pos);
+  };
+});
+
+closeModal_r.onclick = () => {
+  modalWrap_r.classList.remove("active", "t", "m");
+  moveSlider((pos = 0));
 };
