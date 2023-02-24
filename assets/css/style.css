@@ -554,21 +554,24 @@ section.react .modalReact .modalWrap .modal {
   top: 50%;
   left: 50%;
   width: 80%;
-  height: auto;
-  max-height: 80%;
+  height: -moz-fit-content;
+  height: fit-content;
+  max-height: 70%;
   padding: 10px;
   background: #fff;
   transform: translate(-50%, -50%);
+  overflow: hidden;
 }
 section.react .modalReact .modalWrap .modal .btnPrev,
 section.react .modalReact .modalWrap .modal .btnNext {
   position: absolute;
   top: 50%;
+  left: 15px;
   width: calc(25px + 2vw);
   aspect-ratio: 1;
-  filter: invert(1);
+  border-radius: 50%;
   transform: rotate(-90deg);
-  background: url(../images/ico_arrow.png) no-repeat center/cover;
+  background: #b1b2ff url(../images/ico_arrow.png) no-repeat center/cover;
   z-index: 11;
 }
 section.react .modalReact .modalWrap .modal .btnPrev.disable,
@@ -577,13 +580,14 @@ section.react .modalReact .modalWrap .modal .btnNext.disable {
   pointer-events: none;
 }
 section.react .modalReact .modalWrap .modal .btnNext {
-  right: 10px;
+  left: auto;
+  right: 19px;
   transform: rotate(90deg);
 }
 section.react .modalReact .modalWrap .modal .content {
   display: none;
   width: 100%;
-  height: 100%;
+  height: 60vh;
   overflow: hidden;
 }
 section.react .modalReact .modalWrap .modal .content .slider {
@@ -594,9 +598,19 @@ section.react .modalReact .modalWrap .modal .content .slider {
 }
 section.react .modalReact .modalWrap .modal .content .slider li {
   min-width: 100%;
+  overflow-y: scroll;
 }
 section.react .modalReact .modalWrap .modal .content .slider li img {
   width: 100%;
+}
+section.react .modalReact .modalWrap .modal .content .slider li::-webkit-scrollbar {
+  width: 4px;
+  border-radius: 4px;
+  background: rgba(177, 178, 255, 0.5);
+}
+section.react .modalReact .modalWrap .modal .content .slider li::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background: #b1b2ff;
 }
 section.react .slideWrap {
   display: grid;
@@ -689,6 +703,9 @@ section.contact .addressWrap .address span {
   min-width: 80px;
 }
 
+footer {
+  overflow: hidden;
+}
 footer .scrollText {
   padding: 10px;
   position: relative;
@@ -873,6 +890,13 @@ footer .scrollText .text:nth-child(2) {
   }
   section.react {
     padding-top: 60px;
+  }
+  section.react .modalReact .modalWrap .modal .content.todo {
+    height: -moz-fit-content;
+    height: fit-content;
+  }
+  section.react .modalReact .modalWrap .modal .content.todo li::-webkit-scrollbar {
+    display: none;
   }
   section.contact {
     padding-top: 60px;

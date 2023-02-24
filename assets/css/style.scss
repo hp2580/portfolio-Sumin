@@ -525,20 +525,23 @@ section {
           top: 50%;
           left: 50%;
           width: 80%;
-          height: auto;
-          max-height: 80%;
+          height: fit-content;
+          max-height: 70%;
           padding: 10px;
           background: #fff;
           transform: translate(-50%, -50%);
+          overflow: hidden;
           .btnPrev,
           .btnNext {
             position: absolute;
             top: 50%;
+            left: 15px;
             width: calc(25px + 2vw);
             aspect-ratio: 1;
-            filter: invert(1);
+            border-radius: 50%;
             transform: rotate(-90deg);
-            background: url(../images/ico_arrow.png) no-repeat center / cover;
+            background: $emphasize url(../images/ico_arrow.png) no-repeat center /
+              cover;
             z-index: 11;
             &.disable {
               opacity: 0.5;
@@ -546,13 +549,14 @@ section {
             }
           }
           .btnNext {
-            right: 10px;
+            left: auto;
+            right: 19px;
             transform: rotate(90deg);
           }
           .content {
             display: none;
             width: 100%;
-            height: 100%;
+            height: 60vh;
             overflow: hidden;
             .slider {
               display: flex;
@@ -561,8 +565,18 @@ section {
               transition: 0.3s ease;
               li {
                 min-width: 100%;
+                overflow-y: scroll;
                 img {
                   width: 100%;
+                }
+                &::-webkit-scrollbar {
+                  width: 4px;
+                  border-radius: 4px;
+                  background: rgba($emphasize, 0.5);
+                }
+                &::-webkit-scrollbar-thumb {
+                  border-radius: 4px;
+                  background: $emphasize;
                 }
               }
             }
@@ -665,6 +679,7 @@ section {
 }
 
 footer {
+  overflow: hidden;
   .scrollText {
     padding: 10px;
     position: relative;
@@ -880,6 +895,22 @@ footer {
     }
     &.react {
       padding-top: 60px;
+      .modalReact {
+        .modalWrap {
+          .modal {
+            .content {
+              &.todo {
+                height: fit-content;
+                li {
+                  &::-webkit-scrollbar {
+                    display: none;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
     &.contact {
       padding-top: 60px;
