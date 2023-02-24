@@ -81,6 +81,30 @@ const moveSlider = (pos) => {
   });
 };
 
+const checkDisable = () => {
+  let prev = document.querySelector(".btnPrev"),
+    next = document.querySelector(".btnNext");
+  if (pos > -1) {
+    prev.classList.add("disable");
+  }
+  if (pos < 0) {
+    prev.classList.remove("disable");
+  }
+
+  if (pos < -100) {
+    next.classList.add("disable");
+  }
+  if (pos > -200) {
+    next.classList.remove("disable");
+  }
+};
+
+const clearClass = (elements, className) => {
+  elements.forEach((element) => {
+    element.classList.remove(className);
+  });
+};
+
 window.addEventListener("DOMContentLoaded", () => {
   setTimeout(() => {
     animateText();
@@ -140,7 +164,14 @@ closeModal_p.onclick = () => {
 
 slides.forEach((slide) => {
   slide.addEventListener("click", (e) => {
+    let url = slide.getAttribute("data-url"),
+      href = `https://hp2580.github.io/${url}`;
+
     e.preventDefault();
+    document.body.classList.add("hidden");
+
+    document.querySelector(".modalReact .link").setAttribute("href", href);
+
     if (slide.className === "slide_todo") {
       modalWrap_r.classList.add("active", "t");
     } else {
@@ -153,26 +184,17 @@ controlModal.forEach((control) => {
   control.onclick = () => {
     if (control.classList.contains("btnPrev")) {
       pos += 100;
-      if (pos > -1) {
-        document.querySelector(".btnPrev").classList.add("disable");
-      }
-      if (pos > -200) {
-        document.querySelector(".btnNext").classList.remove("disable");
-      }
     } else {
       pos -= 100;
-      if (pos < 0) {
-        document.querySelector(".btnPrev").classList.remove("disable");
-      }
-      if (pos < -100) {
-        document.querySelector(".btnNext").classList.add("disable");
-      }
     }
     moveSlider(pos);
+    checkDisable();
   };
 });
 
 closeModal_r.onclick = () => {
+  document.body.classList.remove("hidden");
   modalWrap_r.classList.remove("active", "t", "m");
   moveSlider((pos = 0));
+  clearClass(controlModal, "disable");
 };
