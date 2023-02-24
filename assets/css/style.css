@@ -704,6 +704,7 @@ section.contact .addressWrap .address span {
 }
 
 footer {
+  height: 60px;
   overflow: hidden;
 }
 footer .scrollText {
