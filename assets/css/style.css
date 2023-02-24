@@ -48,18 +48,9 @@ button {
     transform: translateY(-10px);
   }
 }
-@keyframes slideImg {
-  0% {
-    transform: translateX(0);
-  }
-  33% {
-    transform: translateX(-100%);
-  }
-  66% {
-    transform: translateX(-200%);
-  }
-  100% {
-    transform: translateX(0);
+@keyframes slideText {
+  to {
+    transform: translateX(-210%);
   }
 }
 body {
@@ -254,20 +245,8 @@ section.about {
   display: flex;
   flex-direction: column;
   position: relative;
-  gap: 40px 0;
+  gap: 25px 0;
   padding-top: 80px;
-}
-section.about .person {
-  display: flex;
-  width: 100%;
-  gap: 0 20px;
-}
-section.about .person .photo {
-  display: block;
-  width: 30%;
-  min-width: 200px;
-  -o-object-fit: cover;
-     object-fit: cover;
 }
 section.about .person .detailWrap {
   display: grid;
@@ -511,7 +490,34 @@ section.projects .stickyWrap .projectWrap .project.project1 span {
   font-size: 1.3em;
 }
 section.projects .stickyWrap .projectWrap .project.end {
+  flex-direction: column;
+  gap: 30px 0;
   min-width: 100%;
+  text-align: center;
+}
+section.projects .stickyWrap .projectWrap .project.end a {
+  font-size: 1.5em;
+  color: #71c9ce;
+  -webkit-text-stroke: 1px #000;
+  position: relative;
+}
+section.projects .stickyWrap .projectWrap .project.end a:before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #71c9ce;
+  border: 1px solid #000;
+  border-radius: 5px;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.5s ease;
+}
+section.projects .stickyWrap .projectWrap .project.end a:hover:before {
+  transform: scaleX(100%);
+  transform-origin: left;
 }
 section.react {
   min-height: auto;
@@ -639,6 +645,68 @@ section.react .slideWrap .slide a .descWrap h2:before {
 section.react .slideWrap .slide a .descWrap p {
   font-size: calc(0.5em + 1vw);
 }
+section.contact {
+  min-height: auto;
+  padding-top: 80px;
+}
+section.contact em {
+  display: block;
+  font-size: 1.25em;
+  margin-bottom: 20px;
+}
+section.contact .addressWrap {
+  width: -moz-fit-content;
+  width: fit-content;
+  font-size: 1.3em;
+  padding: 20px;
+  border-radius: 20px;
+  color: rgba(0, 0, 0, 0.8);
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 2px 2px 5px #000;
+}
+section.contact .addressWrap .address {
+  display: flex;
+  gap: 0 20px;
+  margin-top: 10px;
+}
+section.contact .addressWrap .address .photo {
+  width: 30%;
+  min-width: 200px;
+}
+section.contact .addressWrap .address .photo img {
+  display: block;
+  width: 100%;
+  border-radius: 20px;
+}
+section.contact .addressWrap .address .detail {
+  display: flex;
+  flex-direction: column;
+  gap: 10px 0;
+}
+section.contact .addressWrap .address span {
+  display: inline-block;
+  color: #000;
+  min-width: 80px;
+}
+
+footer .scrollText {
+  padding: 10px;
+  position: relative;
+}
+footer .scrollText .text {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  font-size: 3em;
+  letter-spacing: 5px;
+  white-space: nowrap;
+  color: #71c9ce;
+  -webkit-text-stroke: 1px #000;
+  animation: slideText 15s linear infinite;
+}
+footer .scrollText .text:nth-child(2) {
+  animation-delay: 7.5s;
+}
 
 @media screen and (max-width: 768px) {
   .title {
@@ -653,13 +721,6 @@ section.react .slideWrap .slide a .descWrap p {
   }
   section.about {
     padding-top: 60px;
-  }
-  section.about .person {
-    flex-direction: column;
-    gap: 10px 0;
-  }
-  section.about .person .photo {
-    min-width: 250px;
   }
   section.about .person .detailWrap {
     grid-template-areas: "profile" "skill" "feature" "contact";
@@ -813,6 +874,25 @@ section.react .slideWrap .slide a .descWrap p {
   section.react {
     padding-top: 60px;
   }
+  section.contact {
+    padding-top: 60px;
+  }
+  section.contact em {
+    font-size: 1em;
+  }
+  section.contact .addressWrap {
+    font-size: 0.9em;
+  }
+  section.contact .addressWrap .address {
+    gap: 0 20px;
+  }
+  section.contact .addressWrap .address .photo {
+    width: 30%;
+    min-width: 150px;
+  }
+  section.contact .addressWrap .address span {
+    min-width: 60px;
+  }
 }
 @media screen and (max-width: 480px) {
   section.home {
@@ -838,14 +918,6 @@ section.react .slideWrap .slide a .descWrap p {
   }
   section.home .decoWrap .deco:nth-child(1) {
     transform: translateY(100%);
-  }
-  section.about .person {
-    flex-direction: column;
-    gap: 10px 0;
-  }
-  section.about .person .photo {
-    width: 50%;
-    min-width: 200px;
   }
   section.about .person .detailWrap table.skills tr:not(:nth-child(1)) {
     margin-right: 5px;
@@ -874,5 +946,12 @@ section.react .slideWrap .slide a .descWrap p {
   }
   section.react .slideWrap .slide {
     padding: 20px;
+  }
+  section.contact .addressWrap .address {
+    flex-direction: column;
+    gap: 20px 0;
+  }
+  section.contact .addressWrap .address .photo {
+    width: 50%;
   }
 }/*# sourceMappingURL=style.css.map */

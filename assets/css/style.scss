@@ -200,18 +200,9 @@ section {
     display: flex;
     flex-direction: column;
     position: relative;
-    gap: 40px 0;
+    gap: 25px 0;
     padding-top: 80px;
     .person {
-      display: flex;
-      width: 100%;
-      gap: 0 20px;
-      .photo {
-        display: block;
-        width: 30%;
-        min-width: 200px;
-        object-fit: cover;
-      }
       .detailWrap {
         display: grid;
         grid-template-areas:
@@ -465,7 +456,34 @@ section {
             }
           }
           &.end {
+            flex-direction: column;
+            gap: 30px 0;
             min-width: 100%;
+            text-align: center;
+            a {
+              font-size: 1.5em;
+              color: #71c9ce;
+              -webkit-text-stroke: 1px #000;
+              position: relative;
+              &:before {
+                content: "";
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: 2px;
+                background: #71c9ce;
+                border: 1px solid #000;
+                border-radius: 5px;
+                transform: scaleX(0);
+                transform-origin: right;
+                transition: transform 0.5s ease;
+              }
+              &:hover:before {
+                transform: scaleX(100%);
+                transform-origin: left;
+              }
+            }
           }
         }
       }
@@ -602,6 +620,69 @@ section {
       }
     }
   }
+  &.contact {
+    min-height: auto;
+    padding-top: 80px;
+    em {
+      display: block;
+      font-size: 1.25em;
+      margin-bottom: 20px;
+    }
+    .addressWrap {
+      width: fit-content;
+      font-size: 1.3em;
+      padding: 20px;
+      border-radius: 20px;
+      color: rgba(#000, 0.8);
+      background: rgba(#fff, 0.8);
+      box-shadow: 2px 2px 5px #000;
+      .address {
+        display: flex;
+        gap: 0 20px;
+        margin-top: 10px;
+        .photo {
+          width: 30%;
+          min-width: 200px;
+          img {
+            display: block;
+            width: 100%;
+            border-radius: 20px;
+          }
+        }
+        .detail {
+          display: flex;
+          flex-direction: column;
+          gap: 10px 0;
+        }
+        span {
+          display: inline-block;
+          color: #000;
+          min-width: 80px;
+        }
+      }
+    }
+  }
+}
+
+footer {
+  .scrollText {
+    padding: 10px;
+    position: relative;
+    .text {
+      position: absolute;
+      top: 0;
+      left: 100%;
+      font-size: 3em;
+      letter-spacing: 5px;
+      white-space: nowrap;
+      color: #71c9ce;
+      -webkit-text-stroke: 1px #000;
+      animation: slideText 15s linear infinite;
+      &:nth-child(2) {
+        animation-delay: 7.5s;
+      }
+    }
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -620,11 +701,6 @@ section {
     &.about {
       padding-top: 60px;
       .person {
-        flex-direction: column;
-        gap: 10px 0;
-        .photo {
-          min-width: 250px;
-        }
         .detailWrap {
           grid-template-areas:
             "profile"
@@ -805,6 +881,25 @@ section {
     &.react {
       padding-top: 60px;
     }
+    &.contact {
+      padding-top: 60px;
+      em {
+        font-size: 1em;
+      }
+      .addressWrap {
+        font-size: 0.9em;
+        .address {
+          gap: 0 20px;
+          .photo {
+            width: 30%;
+            min-width: 150px;
+          }
+          span {
+            min-width: 60px;
+          }
+        }
+      }
+    }
   }
 }
 
@@ -840,12 +935,6 @@ section {
     }
     &.about {
       .person {
-        flex-direction: column;
-        gap: 10px 0;
-        .photo {
-          width: 50%;
-          min-width: 200px;
-        }
         .detailWrap {
           table {
             &.skills {
@@ -887,6 +976,17 @@ section {
         gap: 10px 0;
         .slide {
           padding: 20px;
+        }
+      }
+    }
+    &.contact {
+      .addressWrap {
+        .address {
+          flex-direction: column;
+          gap: 20px 0;
+          .photo {
+            width: 50%;
+          }
         }
       }
     }
