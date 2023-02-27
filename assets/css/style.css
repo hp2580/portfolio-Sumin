@@ -783,24 +783,26 @@ footer .scrollText .text:nth-child(2) {
   }
   section.about .desc {
     justify-content: flex-start;
-    background: #cbf1f5;
   }
   section.about .desc h1 {
     display: none;
   }
-  section.about .desc em {
+  section.about .desc p {
+    background: #cbf1f5;
+  }
+  section.about .desc p em {
     margin-left: 0;
     margin-bottom: 10px;
     padding-left: 30px;
     font-size: 1.2em;
     line-height: 1.5;
   }
-  section.about .desc em:before {
+  section.about .desc p em:before {
     content: "";
     background: url(../images/icons-1151_512.gif) no-repeat center/cover;
     mix-blend-mode: multiply;
   }
-  section.about .desc em span:not(.emphasize) {
+  section.about .desc p em span:not(.emphasize) {
     display: inline-block;
   }
   section.projects .modalProject .modal {

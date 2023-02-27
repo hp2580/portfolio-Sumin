@@ -783,24 +783,26 @@ footer {
       }
       .desc {
         justify-content: flex-start;
-        background: #cbf1f5;
         h1 {
           display: none;
         }
-        em {
-          margin-left: 0;
-          margin-bottom: 10px;
-          padding-left: 30px;
-          font-size: 1.2em;
-          line-height: 1.5;
-          &:before {
-            content: "";
-            background: url(../images/icons-1151_512.gif) no-repeat center /
-              cover;
-            mix-blend-mode: multiply;
-          }
-          span:not(.emphasize) {
-            display: inline-block;
+        p {
+          background: #cbf1f5;
+          em {
+            margin-left: 0;
+            margin-bottom: 10px;
+            padding-left: 30px;
+            font-size: 1.2em;
+            line-height: 1.5;
+            &:before {
+              content: "";
+              background: url(../images/icons-1151_512.gif) no-repeat center /
+                cover;
+              mix-blend-mode: multiply;
+            }
+            span:not(.emphasize) {
+              display: inline-block;
+            }
           }
         }
       }
