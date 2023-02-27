@@ -172,6 +172,8 @@ slides.forEach((slide) => {
 
     document.querySelector(".modalReact .link").setAttribute("href", href);
 
+    checkDisable();
+
     if (slide.className === "slide_todo") {
       modalWrap_r.classList.add("active", "t");
     } else {
