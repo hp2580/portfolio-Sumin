@@ -103,14 +103,14 @@ body::-webkit-scrollbar {
 }
 
 section {
-  min-height: 100vh;
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid rgba(#000, 0.3);
   padding: 20px 40px;
   position: relative;
   overflow: hidden;
   &.home {
     display: flex;
     align-items: flex-end;
+    min-height: 100vh;
     position: relative;
     .introduction {
       position: absolute;
@@ -490,7 +490,6 @@ section {
     }
   }
   &.react {
-    min-height: auto;
     padding-top: 80px;
     .modalReact {
       display: none;
@@ -635,7 +634,6 @@ section {
     }
   }
   &.contact {
-    min-height: auto;
     padding-top: 80px;
     em {
       display: block;
@@ -666,12 +664,16 @@ section {
         .detail {
           display: flex;
           flex-direction: column;
+          justify-content: center;
           gap: 10px 0;
         }
         span {
           display: inline-block;
           color: #000;
           min-width: 80px;
+        }
+        .github {
+          color: #71c9ce;
         }
       }
     }

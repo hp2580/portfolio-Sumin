@@ -149,8 +149,7 @@ body::-webkit-scrollbar {
 }
 
 section {
-  min-height: 100vh;
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
   padding: 20px 40px;
   position: relative;
   overflow: hidden;
@@ -158,6 +157,7 @@ section {
 section.home {
   display: flex;
   align-items: flex-end;
+  min-height: 100vh;
   position: relative;
 }
 section.home .introduction {
@@ -520,7 +520,6 @@ section.projects .stickyWrap .projectWrap .project.end a:hover:before {
   transform-origin: left;
 }
 section.react {
-  min-height: auto;
   padding-top: 80px;
 }
 section.react .modalReact {
@@ -660,7 +659,6 @@ section.react .slideWrap .slide a .descWrap p {
   font-size: calc(0.5em + 1vw);
 }
 section.contact {
-  min-height: auto;
   padding-top: 80px;
 }
 section.contact em {
@@ -695,12 +693,16 @@ section.contact .addressWrap .address .photo img {
 section.contact .addressWrap .address .detail {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 10px 0;
 }
 section.contact .addressWrap .address span {
   display: inline-block;
   color: #000;
   min-width: 80px;
+}
+section.contact .addressWrap .address .github {
+  color: #71c9ce;
 }
 
 footer {
