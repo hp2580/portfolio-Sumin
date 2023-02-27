@@ -658,6 +658,10 @@ section.react .slideWrap .slide a .descWrap h2:before {
 section.react .slideWrap .slide a .descWrap p {
   font-size: calc(0.5em + 1vw);
 }
+section.react .sub {
+  text-align: center;
+  padding: 15px 0;
+}
 section.contact {
   padding-top: 80px;
 }
