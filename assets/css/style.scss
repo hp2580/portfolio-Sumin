@@ -620,12 +620,14 @@ section {
           .imgWrap {
             display: flex;
             width: 100%;
+            aspect-ratio: 16 / 9;
             margin-bottom: 10px;
             overflow: hidden;
             img {
               display: block;
               flex: 1;
               width: 100%;
+              height: max-content;
             }
           }
           .descWrap {

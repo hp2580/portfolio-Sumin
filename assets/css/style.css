@@ -645,6 +645,7 @@ section.react .slideWrap .slide a {
 section.react .slideWrap .slide a .imgWrap {
   display: flex;
   width: 100%;
+  aspect-ratio: 16/9;
   margin-bottom: 10px;
   overflow: hidden;
 }
@@ -652,6 +653,8 @@ section.react .slideWrap .slide a .imgWrap img {
   display: block;
   flex: 1;
   width: 100%;
+  height: -moz-max-content;
+  height: max-content;
 }
 section.react .slideWrap .slide a .descWrap span {
   font-size: calc(0.4em + 0.8vw);
