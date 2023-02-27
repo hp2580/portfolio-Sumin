@@ -15,9 +15,32 @@ const scrollBar = document.querySelector(".scrollbar .bar"),
   modalSlider = document.querySelectorAll(".modalReact .slider"),
   sections = document.querySelectorAll("section:not(.home, .projects)");
 
+/**
+ *
+ * @param {*} elements 클래스를 삭제할 대상이 요소
+ * @param {*} className 삭제할 클래스 이름
+ */
 const clearClass = (elements, className) => {
   elements.forEach((element) => {
     element.classList.remove(className);
+  });
+};
+
+/**
+ *
+ * @param {*} elements 클래스를 추가할 대상이 요소
+ * @param {*} className 추가할 클래스 이름
+ */
+const scrollToToggle = (elements, className) => {
+  elements.forEach((element) => {
+    let top = element.getBoundingClientRect().top;
+    if (top < window.innerHeight / 2) {
+      if (!element.classList.contains(className))
+        element.classList.add(className);
+    } else {
+      if (element.classList.contains(className))
+        element.classList.remove(className);
+    }
   });
 };
 
@@ -25,6 +48,7 @@ window.addEventListener("DOMContentLoaded", () => {
   setTimeout(() => {
     animateText();
     toggleFadeProject();
+    scrollToToggle(sections, "view");
   });
 });
 
@@ -35,6 +59,7 @@ window.onscroll = () => {
 
   hScroll();
   toggleFadeProject();
+  scrollToToggle(sections, "view");
 };
 
 window.onresize = () => {

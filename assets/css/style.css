@@ -154,6 +154,18 @@ section {
   position: relative;
   overflow: hidden;
 }
+section:not(.home, .projects) {
+  padding-top: 80px;
+}
+section:not(.home, .projects) > * {
+  opacity: 0;
+  transform: translateX(-100px);
+  transition: 0.5s ease;
+}
+section:not(.home, .projects).view > * {
+  opacity: 1;
+  transform: translateX(0);
+}
 section.home {
   display: flex;
   align-items: flex-end;
@@ -246,7 +258,6 @@ section.about {
   flex-direction: column;
   position: relative;
   gap: 25px 0;
-  padding-top: 80px;
 }
 section.about .person .detailWrap {
   display: grid;
@@ -495,6 +506,15 @@ section.projects .stickyWrap .projectWrap .project.end {
   min-width: 100%;
   text-align: center;
 }
+section.projects .stickyWrap .projectWrap .project.end > * {
+  opacity: 0;
+  transform: translateY(100px);
+  transition: 0.5s ease;
+}
+section.projects .stickyWrap .projectWrap .project.end.active > * {
+  opacity: 1;
+  transform: translateY(0);
+}
 section.projects .stickyWrap .projectWrap .project.end a {
   font-size: 1.5em;
   color: #71c9ce;
@@ -518,9 +538,6 @@ section.projects .stickyWrap .projectWrap .project.end a:before {
 section.projects .stickyWrap .projectWrap .project.end a:hover:before {
   transform: scaleX(100%);
   transform-origin: left;
-}
-section.react {
-  padding-top: 80px;
 }
 section.react .modalReact {
   display: none;
@@ -662,9 +679,6 @@ section.react .sub {
   text-align: center;
   padding: 15px 0;
 }
-section.contact {
-  padding-top: 80px;
-}
 section.contact em {
   display: block;
   font-size: 1.25em;
@@ -740,11 +754,11 @@ footer .scrollText .text:nth-child(2) {
   section {
     padding: 20px;
   }
+  section:not(.home, .projects) {
+    padding-top: 60px;
+  }
   section.home .introduction {
     left: 20px;
-  }
-  section.about {
-    padding-top: 60px;
   }
   section.about .person .detailWrap {
     grid-template-areas: "profile" "skill" "feature" "contact";
@@ -769,6 +783,7 @@ footer .scrollText .text:nth-child(2) {
   }
   section.about .desc {
     justify-content: flex-start;
+    background: #cbf1f5;
   }
   section.about .desc h1 {
     display: none;
@@ -895,18 +910,12 @@ footer .scrollText .text:nth-child(2) {
   section.projects .stickyWrap .projectWrap .project.project1 span {
     font-size: 1.3em;
   }
-  section.react {
-    padding-top: 60px;
-  }
   section.react .modalReact .modalWrap .modal .content.todo {
     height: -moz-fit-content;
     height: fit-content;
   }
   section.react .modalReact .modalWrap .modal .content.todo li::-webkit-scrollbar {
     display: none;
-  }
-  section.contact {
-    padding-top: 60px;
   }
   section.contact em {
     font-size: 1em;

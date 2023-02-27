@@ -107,6 +107,20 @@ section {
   padding: 20px 40px;
   position: relative;
   overflow: hidden;
+  &:not(.home, .projects) {
+    padding-top: 80px;
+    & > * {
+      opacity: 0;
+      transform: translateX(-100px);
+      transition: 0.5s ease;
+    }
+    &.view {
+      & > * {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+  }
   &.home {
     display: flex;
     align-items: flex-end;
@@ -201,7 +215,6 @@ section {
     flex-direction: column;
     position: relative;
     gap: 25px 0;
-    padding-top: 80px;
     .person {
       .detailWrap {
         display: grid;
@@ -460,6 +473,17 @@ section {
             gap: 30px 0;
             min-width: 100%;
             text-align: center;
+            & > * {
+              opacity: 0;
+              transform: translateY(100px);
+              transition: 0.5s ease;
+            }
+            &.active {
+              & > * {
+                opacity: 1;
+                transform: translateY(0);
+              }
+            }
             a {
               font-size: 1.5em;
               color: #71c9ce;
@@ -490,7 +514,6 @@ section {
     }
   }
   &.react {
-    padding-top: 80px;
     .modalReact {
       display: none;
       position: fixed;
@@ -638,7 +661,6 @@ section {
     }
   }
   &.contact {
-    padding-top: 80px;
     em {
       display: block;
       font-size: 1.25em;
@@ -715,13 +737,15 @@ footer {
 
   section {
     padding: 20px;
+    &:not(.home, .projects) {
+      padding-top: 60px;
+    }
     &.home {
       .introduction {
         left: 20px;
       }
     }
     &.about {
-      padding-top: 60px;
       .person {
         .detailWrap {
           grid-template-areas:
@@ -759,6 +783,7 @@ footer {
       }
       .desc {
         justify-content: flex-start;
+        background: #cbf1f5;
         h1 {
           display: none;
         }
@@ -901,7 +926,6 @@ footer {
       }
     }
     &.react {
-      padding-top: 60px;
       .modalReact {
         .modalWrap {
           .modal {
@@ -920,7 +944,6 @@ footer {
       }
     }
     &.contact {
-      padding-top: 60px;
       em {
         font-size: 1em;
       }
