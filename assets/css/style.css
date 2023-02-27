@@ -431,7 +431,7 @@ section.projects .stickyWrap .projectWrap .project .container .imgWrap {
   height: 30vh;
   overflow: hidden;
   border-radius: 10px;
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
 }
 section.projects .stickyWrap .projectWrap .project .container .imgWrap img {
   display: block;
