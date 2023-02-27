@@ -709,7 +709,7 @@ section {
 }
 
 footer {
-  height: 60px;
+  height: 100px;
   overflow: hidden;
   .scrollText {
     padding: 10px;
@@ -718,7 +718,7 @@ footer {
       position: absolute;
       top: 0;
       left: 100%;
-      font-size: 3em;
+      font-size: 5em;
       letter-spacing: 5px;
       white-space: nowrap;
       color: #71c9ce;

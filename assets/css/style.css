@@ -727,7 +727,7 @@ section.contact .addressWrap .address .github {
 }
 
 footer {
-  height: 60px;
+  height: 100px;
   overflow: hidden;
 }
 footer .scrollText {
@@ -738,7 +738,7 @@ footer .scrollText .text {
   position: absolute;
   top: 0;
   left: 100%;
-  font-size: 3em;
+  font-size: 5em;
   letter-spacing: 5px;
   white-space: nowrap;
   color: #71c9ce;
