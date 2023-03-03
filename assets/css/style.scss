@@ -226,12 +226,22 @@ section {
         padding: 10px;
         box-shadow: 0 0 10px rgba(#000, 0.3);
         background: #fff;
-        table {
+        .detail {
           &.profile {
             grid-area: profile;
           }
           &.skills {
             grid-area: skill;
+            .icon {
+              display: none;
+              width: 40px;
+              height: 40px;
+              img {
+                display: block;
+                width: 100%;
+                height: 100%;
+              }
+            }
           }
           &.feature {
             grid-area: feature;
@@ -239,21 +249,17 @@ section {
           &.contact {
             grid-area: contact;
           }
-          th {
+          .emphasize {
             display: inline-block;
-            text-align: left;
             font-size: 1.4em;
+            font-weight: 600;
             margin-bottom: 10px;
           }
-          td {
-            font-size: 1.2em;
-            &.bold {
-              font-weight: 600;
-            }
-            &.icon {
-              display: none;
-              img {
-                width: 100%;
+          .depth2 {
+            display: flex;
+            li {
+              &:first-child:not(.icon) {
+                min-width: 60px;
               }
             }
           }
@@ -504,7 +510,7 @@ section {
                 transition: transform 0.5s ease;
               }
               &:hover:before {
-                transform: scaleX(100%);
+                transform: scaleX(1);
                 transform-origin: left;
               }
             }
@@ -559,10 +565,10 @@ section {
             top: 50%;
             left: 15px;
             width: calc(25px + 2vw);
-            aspect-ratio: 1;
+            aspect-ratio: 1 / 1;
             border-radius: 50%;
             transform: rotate(-90deg);
-            background: $emphasize url(../images/ico_arrow.png) no-repeat center /
+            background: #000 url(../images/ico_arrow.png) no-repeat center /
               cover;
             z-index: 11;
             &.disable {
@@ -594,11 +600,11 @@ section {
                 &::-webkit-scrollbar {
                   width: 4px;
                   border-radius: 4px;
-                  background: rgba($emphasize, 0.5);
+                  background: rgba(#000, 0.5);
                 }
                 &::-webkit-scrollbar-thumb {
                   border-radius: 4px;
-                  background: $emphasize;
+                  background: #000;
                 }
               }
             }
@@ -755,30 +761,22 @@ footer {
             "skill"
             "feature"
             "contact";
-          table {
+          .detail {
             &.skills {
-              tr {
-                &:not(:nth-child(1)) {
-                  display: inline-block;
-                  margin-right: 10px;
+              li:not(:first-child) {
+                display: inline-block;
+              }
+              .depth2 {
+                li {
+                  display: none;
                 }
-                td {
-                  &.icon {
-                    display: block;
-                    width: 40px;
-                    height: 40px;
-                  }
-                  &:not(.icon) {
-                    display: none;
-                  }
+                .icon {
+                  display: block;
                 }
               }
             }
-            td {
-              font-size: 1.1em;
-              &.bold {
-                width: 80px;
-              }
+            .emphasize {
+              font-size: 1.2em;
             }
           }
         }
@@ -1001,22 +999,23 @@ footer {
     &.about {
       .person {
         .detailWrap {
-          table {
+          .detail {
             &.skills {
-              tr {
-                &:not(:nth-child(1)) {
-                  margin-right: 5px;
-                }
-                td {
-                  &.icon {
-                    width: 30px;
-                    height: 30px;
-                  }
-                }
+              .icon {
+                width: 30px;
+                height: 30px;
               }
             }
-            td {
-              font-size: 0.85em;
+            .emphasize {
+              font-size: 1em;
+            }
+            .depth2 {
+              li {
+                font-size: 0.875em;
+                &:first-child:not(.icon) {
+                  min-width: 60px;
+                }
+              }
             }
           }
         }

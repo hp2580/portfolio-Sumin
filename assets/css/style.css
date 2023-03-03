@@ -268,35 +268,39 @@ section.about .person .detailWrap {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   background: #fff;
 }
-section.about .person .detailWrap table.profile {
+section.about .person .detailWrap .detail.profile {
   grid-area: profile;
 }
-section.about .person .detailWrap table.skills {
+section.about .person .detailWrap .detail.skills {
   grid-area: skill;
 }
-section.about .person .detailWrap table.feature {
+section.about .person .detailWrap .detail.skills .icon {
+  display: none;
+  width: 40px;
+  height: 40px;
+}
+section.about .person .detailWrap .detail.skills .icon img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+section.about .person .detailWrap .detail.feature {
   grid-area: feature;
 }
-section.about .person .detailWrap table.contact {
+section.about .person .detailWrap .detail.contact {
   grid-area: contact;
 }
-section.about .person .detailWrap table th {
+section.about .person .detailWrap .detail .emphasize {
   display: inline-block;
-  text-align: left;
   font-size: 1.4em;
+  font-weight: 600;
   margin-bottom: 10px;
 }
-section.about .person .detailWrap table td {
-  font-size: 1.2em;
+section.about .person .detailWrap .detail .depth2 {
+  display: flex;
 }
-section.about .person .detailWrap table td.bold {
-  font-weight: 600;
-}
-section.about .person .detailWrap table td.icon {
-  display: none;
-}
-section.about .person .detailWrap table td.icon img {
-  width: 100%;
+section.about .person .detailWrap .detail .depth2 li:first-child:not(.icon) {
+  min-width: 60px;
 }
 section.about .desc {
   display: flex;
@@ -536,7 +540,7 @@ section.projects .stickyWrap .projectWrap .project.end a:before {
   transition: transform 0.5s ease;
 }
 section.projects .stickyWrap .projectWrap .project.end a:hover:before {
-  transform: scaleX(100%);
+  transform: scaleX(1);
   transform-origin: left;
 }
 section.react .modalReact {
@@ -584,10 +588,10 @@ section.react .modalReact .modalWrap .modal .btnNext {
   top: 50%;
   left: 15px;
   width: calc(25px + 2vw);
-  aspect-ratio: 1;
+  aspect-ratio: 1/1;
   border-radius: 50%;
   transform: rotate(-90deg);
-  background: #b1b2ff url(../images/ico_arrow.png) no-repeat center/cover;
+  background: #000 url(../images/ico_arrow.png) no-repeat center/cover;
   z-index: 11;
 }
 section.react .modalReact .modalWrap .modal .btnPrev.disable,
@@ -622,11 +626,11 @@ section.react .modalReact .modalWrap .modal .content .slider li img {
 section.react .modalReact .modalWrap .modal .content .slider li::-webkit-scrollbar {
   width: 4px;
   border-radius: 4px;
-  background: rgba(177, 178, 255, 0.5);
+  background: rgba(0, 0, 0, 0.5);
 }
 section.react .modalReact .modalWrap .modal .content .slider li::-webkit-scrollbar-thumb {
   border-radius: 4px;
-  background: #b1b2ff;
+  background: #000;
 }
 section.react .slideWrap {
   display: grid;
@@ -766,23 +770,17 @@ footer .scrollText .text:nth-child(2) {
   section.about .person .detailWrap {
     grid-template-areas: "profile" "skill" "feature" "contact";
   }
-  section.about .person .detailWrap table.skills tr:not(:nth-child(1)) {
+  section.about .person .detailWrap .detail.skills li:not(:first-child) {
     display: inline-block;
-    margin-right: 10px;
   }
-  section.about .person .detailWrap table.skills tr td.icon {
-    display: block;
-    width: 40px;
-    height: 40px;
-  }
-  section.about .person .detailWrap table.skills tr td:not(.icon) {
+  section.about .person .detailWrap .detail.skills .depth2 li {
     display: none;
   }
-  section.about .person .detailWrap table td {
-    font-size: 1.1em;
+  section.about .person .detailWrap .detail.skills .depth2 .icon {
+    display: block;
   }
-  section.about .person .detailWrap table td.bold {
-    width: 80px;
+  section.about .person .detailWrap .detail .emphasize {
+    font-size: 1.2em;
   }
   section.about .desc {
     justify-content: flex-start;
@@ -964,15 +962,18 @@ footer .scrollText .text:nth-child(2) {
   section.home .decoWrap .deco:nth-child(1) {
     transform: translateY(100%);
   }
-  section.about .person .detailWrap table.skills tr:not(:nth-child(1)) {
-    margin-right: 5px;
-  }
-  section.about .person .detailWrap table.skills tr td.icon {
+  section.about .person .detailWrap .detail.skills .icon {
     width: 30px;
     height: 30px;
   }
-  section.about .person .detailWrap table td {
-    font-size: 0.85em;
+  section.about .person .detailWrap .detail .emphasize {
+    font-size: 1em;
+  }
+  section.about .person .detailWrap .detail .depth2 li {
+    font-size: 0.875em;
+  }
+  section.about .person .detailWrap .detail .depth2 li:first-child:not(.icon) {
+    min-width: 60px;
   }
   section.about .desc h1 {
     display: none;
