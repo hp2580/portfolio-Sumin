@@ -3,7 +3,7 @@ const hScroll = () => {
   let stickyTop = sticky.getBoundingClientRect().top;
   let scrollWidth = sticky.scrollWidth;
   let scrollHeight = project.scrollHeight - sticky.scrollHeight;
-  let scrollPos = (scrollWidth / scrollHeight) * -top * 0.8;
+  let scrollPos = (scrollWidth / scrollHeight) * -top;
   if (stickyTop < 1) {
     document.querySelector(".project1").classList.add("active");
     sticky.scrollLeft = scrollPos;
