@@ -40,6 +40,7 @@ btnProjects.forEach((btn) => {
     let img = document.querySelector(".modal img");
     let url = `assets/images/project_${arrProject[idx].name}.png`;
     let alt = arrProject[idx].alt;
+    let link = document.querySelector(".modalProject .modal .link");
     let href = `https://hp2580.github.io/Clone_${arrProject[idx].href}`;
 
     document.body.classList.add("hidden");
@@ -47,9 +48,8 @@ btnProjects.forEach((btn) => {
 
     modal_p.prepend(desc.cloneNode(true));
 
-    document
-      .querySelector(".modalProject .modal .link")
-      .setAttribute("href", href);
+    link.setAttribute("href", href);
+    link.setAttribute("title", `${alt} 바로가기`);
 
     img.setAttribute("src", url);
     img.setAttribute("alt", alt);
@@ -72,13 +72,15 @@ closeModal_p.onclick = () => {
 
 slides.forEach((slide) => {
   slide.addEventListener("click", (e) => {
+    let link = document.querySelector(".modalReact .link");
     let url = slide.getAttribute("data-url"),
       href = `https://hp2580.github.io/${url}`;
 
     e.preventDefault();
     document.body.classList.add("hidden");
 
-    document.querySelector(".modalReact .link").setAttribute("href", href);
+    link.setAttribute("href", href);
+    link.setAttribute("title", `${url} 바로가기`);
 
     checkDisable();
 
